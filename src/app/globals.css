@@ -13,11 +13,25 @@
     --foreground: #ededed;
   }
 }
+.custom-cursor {
+  cursor: url('../../public/customgreen.png'), auto;
+}
 
+/* Ensure other elements maintain the default cursor */
+body, *:not(.custom-cursor) {
+  cursor: auto;
+}
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  cursor: url('../../public/customgreen.png'), auto !important;
+}
+img{
+  cursor: url('../../public/customgreen.png'), auto !important;
+}
+div{
+  cursor: url('../../public/customgreen.png'), auto !important;
 }
 
 @layer utilities {

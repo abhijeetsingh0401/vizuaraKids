@@ -11,6 +11,9 @@ module.exports = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily:{
+        extradays:["var(--font-extra)"],
+      }
     },
   },
   plugins: [],
