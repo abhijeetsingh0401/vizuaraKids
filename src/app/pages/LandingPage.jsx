@@ -7,6 +7,7 @@ import CircleCardComponent from "../components/CircleCardComponent";
 import PreStoryComponent from "../components/PreStoryComponent";
 import React, { useState, useEffect,useRef } from 'react';
 import useSound from "use-sound";
+import BadgeDisplay from "../components/BadgeDisplay";
 export default function LandingPage() {
   const initialCards = [
     {
@@ -198,6 +199,8 @@ export default function LandingPage() {
     setShowPlaceCards(true);
   };
   return (
+    <>
+    <BadgeDisplay/>
     <div
       className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center custom-cursor"
       style={{ backgroundImage: "url('backgroundimageiwithkids.png')" }}
@@ -297,5 +300,6 @@ export default function LandingPage() {
         </>
       )}
     </div>
+    </>
   );
 }
