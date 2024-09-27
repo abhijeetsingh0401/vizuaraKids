@@ -1,10 +1,11 @@
+"use client";
 import React, { useState, useEffect } from 'react';
-
+import useSound from 'use-sound';
 const CardComponent = ({ title, image, gifImage, audioSrc }) => {
   const [tilt, setTilt] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const audioRef = React.useRef(new Audio(audioSrc));
-
+  
+  const [play, { stop }] = useSound(audioSrc);
   const handleMouseMove = (e) => {
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
@@ -16,25 +17,16 @@ const CardComponent = ({ title, image, gifImage, audioSrc }) => {
 
   const handleMouseEnter = () => {
     setIsHovered(true);
-    // Attempt to play audio
-    audioRef.current.play().catch((error) => {
-      console.error('Error playing audio:', error);
-    });
+   play()
   };
 
   const handleMouseLeave = () => {
     setTilt(0);
     setIsHovered(false);
-    audioRef.current.pause(); // Pause audio when not hovering
-    audioRef.current.currentTime = 0; // Reset audio to start
+stop()
   };
 
-  useEffect(() => {
-    return () => {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-    };
-  }, []);
+
 
   return (
     <div

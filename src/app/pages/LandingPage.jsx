@@ -2,10 +2,11 @@
 
 
 import Card from "../components/CardComponent";
-import StoryComponent from "../components/StoryComponent";
+
 import CircleCardComponent from "../components/CircleCardComponent";
 import PreStoryComponent from "../components/PreStoryComponent";
 import React, { useState, useEffect,useRef } from 'react';
+import useSound from "use-sound";
 export default function LandingPage() {
   const initialCards = [
     {
@@ -160,23 +161,18 @@ export default function LandingPage() {
   const [placeCardDetails, setPlaceCardDetails] = useState(false);
   const [canPlayAudio, setCanPlayAudio] = useState(false); // Track if the user has interacted
   const [showInitialScreen, setShowInitialScreen] = useState(true);
-  const audioRef = useRef(new Audio('../sounds/clicksound.mp3'));
 
-  useEffect(() => {
-    return () => {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-    };
-  }, []);
+  const [play, { stop }] = useSound('../sounds/clicksound.mp3')
+
 
   const playAudio = () => {
-    audioRef.current.play();
+    play()
     setIsPlaying(true);
     setCanPlayAudio(true);
   };
 
   const pauseAudio = () => {
-    audioRef.current.pause();
+    stop
     setIsPlaying(false);
   };
 

@@ -1,8 +1,9 @@
+"use client";
 import React, { useState, useEffect, useRef } from 'react';
 import Slider from 'react-slick'; // Importing the carousel
 import { OpenAI } from 'openai';
 import axios from 'axios';
-
+import useSound from 'use-sound';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -16,6 +17,7 @@ export default function PreStoryComponent({ initialCard, actionCard, placeCard }
   const [imageUrls, setImageUrls] = useState([]);
   const [currentPart, setCurrentPart] = useState(0);
   const[title,setTitle]=useState('')
+
   const [loadingAudio, setLoadingAudio] = useState(false); // New loading state
   const [imageGenerationStatus, setImageGenerationStatus] = useState([]);
   const json=[{
@@ -47,7 +49,7 @@ export default function PreStoryComponent({ initialCard, actionCard, placeCard }
     console.log('No Item Found')
     return null; // Return null if no match is found
   };
-  const audioRef = useRef(null);
+
   const openai = new OpenAI({ apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY, dangerouslyAllowBrowser: true });
 
 
@@ -75,20 +77,15 @@ export default function PreStoryComponent({ initialCard, actionCard, placeCard }
   };
 
 
-  
+  const [play, { pause, stop, sound }] = useSound(audioUrl, { volume: 0.5 });
+
 
   const playAudio = () => {
-    if (audioUrl && audioRef.current) {
-      audioRef.current.play();
-      setIsPlaying(true);
-    }
+    play()
   };
 
   const pauseAudio = () => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    }
+    pause()
   };
 
   const handleAudioEnded = () => {
@@ -96,17 +93,7 @@ export default function PreStoryComponent({ initialCard, actionCard, placeCard }
     setCurrentPart(0);
   };
 
-  const handleAudioTimeUpdate = () => {
-    if (audioRef.current) {
-      const currentTime = audioRef.current.currentTime;
-      const totalDuration = audioRef.current.duration;
-      const partDuration = totalDuration / storyParts.length;
-      const newCurrentPart = Math.floor(currentTime / partDuration);
-      if (newCurrentPart !== currentPart) {
-        setCurrentPart(newCurrentPart);
-      }
-    }
-  };
+
 
   const sliderSettings = {
     dots: true,
@@ -134,10 +121,10 @@ export default function PreStoryComponent({ initialCard, actionCard, placeCard }
       {audioUrl ? (
         <div className="mb-4">
           <audio
-            ref={audioRef}
+
             src={audioUrl}
             onEnded={handleAudioEnded}
-            onTimeUpdate={handleAudioTimeUpdate}
+
           />
           <button 
             onClick={isPlaying ? pauseAudio : playAudio}
