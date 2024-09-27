@@ -35,7 +35,7 @@ export default function PreStoryComponent({ initialCard, actionCard, placeCard }
       "Place": "Playground",
       "Story": "A playful kitten named Whiskers bounced into the sunny playground, eyes wide with curiosity. She pounced on a fluttering butterfly, chasing it across the soft grass. With a little leap, she landed on the swing, swaying back and forth. Her tiny paws scrambled up a slide, giggling as she slid down. By the end, Whiskers curled up under a tree, tired but happy from her playful adventure",
       "Title":"Whiskers' Playground Adventure",
-      "image":"../story/1.jpg"
+      "image":"../story/3.jpg"
     }
   },
   {
@@ -45,7 +45,7 @@ export default function PreStoryComponent({ initialCard, actionCard, placeCard }
       "Place": "Playground",
       "Story": "A magical unicorn named Sparkle galloped into the colorful playground, her mane shimmering in the sunlight. She pranced after rainbows, leaving a trail of stardust with every leap. With a graceful hop, she landed on the merry-go-round, spinning in delight. Her hooves clicked as she trotted up a rainbow slide, sliding down with a sparkle-filled laugh. Finally, Sparkle rested beneath a glowing tree, her heart full of joy from her magical playtime.",
       "Title":"Sparkle's Magical Playground Adventure",
-      "image":"../story/1.jpg"
+      "image":"../story/2.jpg"
     }
   },
 

@@ -162,7 +162,7 @@ export default function LandingPage() {
   const [placeCardDetails, setPlaceCardDetails] = useState(false);
   const [canPlayAudio, setCanPlayAudio] = useState(false); // Track if the user has interacted
   const [showInitialScreen, setShowInitialScreen] = useState(true);
-
+  const activeBadges = [1, 3, 5];
   const [play, { stop }] = useSound('../sounds/clicksound.mp3')
 
 
@@ -200,7 +200,7 @@ export default function LandingPage() {
   };
   return (
     <>
-    <BadgeDisplay/>
+    {/* <BadgeDisplay activeBadges={activeBadges} /> */}
     <div
       className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center custom-cursor"
       style={{ backgroundImage: "url('backgroundimageiwithkids.png')" }}
