@@ -200,106 +200,107 @@ export default function LandingPage() {
   };
   return (
     <>
-    {/* <BadgeDisplay activeBadges={activeBadges} /> */}
-    <div
-      className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center custom-cursor"
-      style={{ backgroundImage: "url('backgroundimageiwithkids.png')" }}
-    >
-
-      {showInitialScreen ? (
-        <div className="flex flex-row items-center justify-center ml-80">
-  <div className="flex flex-col items-center">
-    <h1 className="text-8xl font-bold mb-8 text-white text-center">
-      Create your story
-    </h1>
-    <button
-      onClick={handleStartCreation}
-      className="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-6 rounded text-xl mt-4"
-    >
-      Start Creating
-    </button>
-  </div>
-
-  <img 
-    src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/3b9127105856873.5f86b0cc29ddf.gif"
-    alt="Story Creation"
-    className="ml-4"
-  />
-</div>
-
- 
-      ) : (
-        <>
-          {!selectedCard && !showActionCards && (
-            <div className="flex flex-col justify-center items-center">
-              <h1 className="text-8xl font-bold mb-8 text-white">
-                Select a character
+      {/* Position the BadgeDisplay to the left side of the screen */}
+      {/* <div className="fixed top-0 left-0 p-4">
+        <BadgeDisplay activeBadges={activeBadges} />
+      </div> */}
+      
+      <div
+        className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center custom-cursor"
+        style={{ backgroundImage: "url('backgroundimageiwithkids.png')" }}
+      >
+        {showInitialScreen ? (
+          <div className="flex flex-row items-center justify-center ml-80">
+            <div className="flex flex-col items-center">
+              <h1 className="text-8xl font-bold mb-8 text-white text-center">
+                Create your story
               </h1>
-              <div className="flex space-x-6">
-                {initialCards.map((card) => (
-                  <div onClick={() => handleCardClick(card)} key={card.id}>
-                    <Card
-                      title={card.title}
-                      description={card.description}
-                      image={card.image}
-                      gifImage={card.animatedgifs}
-                      audioSrc={card.audioSrc}
-                    />
-                  </div>
-                ))}
-              </div>
+              <button
+                onClick={handleStartCreation}
+                className="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-6 rounded text-xl mt-4"
+              >
+                Start Creating
+              </button>
             </div>
-          )}
-
-          {selectedCard && !showActionCards && (
-            <div className="flex flex-col justify-center items-center">
-              <h1 className="text-8xl font-bold mb-8 text-white">
-                Choose an action
-              </h1>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '60px' }}>
-                {actionCards.map((card) => (
-                  <div onClick={() => handleShowActionCards(card)} key={card.id}>
-                    <CircleCardComponent
-                      title={card.title}
-                      description={card.description}
-                      image={card.image}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {showActionCards && !showPlaceCards && (
-            <div className="flex flex-col justify-center items-center">
-              <h1 className="text-8xl font-bold mb-8 text-white">
-                Choose a place
-              </h1>
-              <div className="flex space-x-6">
-                {ActionCards.map((card) => (
-                  <div onClick={() => handlePlaceCards(card)} key={card.id}>
-                    <Card
-                      title={card.title}
-                      description={card.description}
-                      image={card.image}
-                      audioSrc={card.audioSrc}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {showPlaceCards && (
-            <PreStoryComponent
-              initialCard={initalCardDetails}
-              actionCard={actionCardDetails}
-              placeCard={placeCardDetails}
+  
+            <img 
+              src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/3b9127105856873.5f86b0cc29ddf.gif"
+              alt="Story Creation"
+              className="ml-4"
             />
-          )}
-        </>
-      )}
-    </div>
+          </div>
+        ) : (
+          <>
+            {!selectedCard && !showActionCards && (
+              <div className="flex flex-col justify-center items-center">
+                <h1 className="text-8xl font-bold mb-8 text-white">
+                  Select a character
+                </h1>
+                <div className="flex space-x-6">
+                  {initialCards.map((card) => (
+                    <div onClick={() => handleCardClick(card)} key={card.id}>
+                      <Card
+                        title={card.title}
+                        description={card.description}
+                        image={card.image}
+                        gifImage={card.animatedgifs}
+                        audioSrc={card.audioSrc}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+  
+            {selectedCard && !showActionCards && (
+              <div className="flex flex-col justify-center items-center">
+                <h1 className="text-8xl font-bold mb-8 text-white">
+                  Choose an action
+                </h1>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '60px' }}>
+                  {actionCards.map((card) => (
+                    <div onClick={() => handleShowActionCards(card)} key={card.id}>
+                      <CircleCardComponent
+                        title={card.title}
+                        description={card.description}
+                        image={card.image}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+  
+            {showActionCards && !showPlaceCards && (
+              <div className="flex flex-col justify-center items-center">
+                <h1 className="text-8xl font-bold mb-8 text-white">
+                  Choose a place
+                </h1>
+                <div className="flex space-x-6">
+                  {ActionCards.map((card) => (
+                    <div onClick={() => handlePlaceCards(card)} key={card.id}>
+                      <Card
+                        title={card.title}
+                        description={card.description}
+                        image={card.image}
+                        audioSrc={card.audioSrc}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+  
+            {showPlaceCards && (
+              <PreStoryComponent
+                initialCard={initalCardDetails}
+                actionCard={actionCardDetails}
+                placeCard={placeCardDetails}
+              />
+            )}
+          </>
+        )}
+      </div>
     </>
   );
-}
+            }  
