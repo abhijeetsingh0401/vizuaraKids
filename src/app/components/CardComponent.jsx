@@ -1,27 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const CardComponent = ({ title, image, gifImage }) => {
+const CardComponent = ({ title, image, gifImage, audioSrc }) => {
   const [tilt, setTilt] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const audioRef = React.useRef(new Audio(audioSrc));
 
   const handleMouseMove = (e) => {
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const centerX = rect.width / 2;
-    // Calculate tilt based on horizontal mouse position
     const newTilt = ((x - centerX) / centerX) * 10; // Max tilt of 10 degrees
     setTilt(newTilt);
   };
 
   const handleMouseEnter = () => {
     setIsHovered(true);
+    // Attempt to play audio
+    audioRef.current.play().catch((error) => {
+      console.error('Error playing audio:', error);
+    });
   };
 
   const handleMouseLeave = () => {
     setTilt(0);
     setIsHovered(false);
+    audioRef.current.pause(); // Pause audio when not hovering
+    audioRef.current.currentTime = 0; // Reset audio to start
   };
+
+  useEffect(() => {
+    return () => {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    };
+  }, []);
 
   return (
     <div
@@ -42,12 +55,12 @@ const CardComponent = ({ title, image, gifImage }) => {
         alt={title}
         style={{ transform: 'translateZ(20px)' }}
       />
-       <div
-      className="flex items-center justify-center h-[100px] p-6" // Centering content
-      style={{ transform: 'translateZ(30px)' }}
-    >
-      <h5 className="text-3xl font-bold tracking-tight text-black" >{title}</h5>
-    </div>
+      <div
+        className="flex items-center justify-center h-[100px] p-6"
+        style={{ transform: 'translateZ(30px)' }}
+      >
+        <h5 className="text-3xl font-bold tracking-tight text-black">{title}</h5>
+      </div>
     </div>
   );
 };

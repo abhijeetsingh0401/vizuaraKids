@@ -1,15 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
-const CircleCardComponent = ({ title, image, gifImage, size = 300 }) => {
+const CircleCardComponent = ({ title, image, gifImage, audioSrc, size = 300 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const audioRef = useRef(new Audio("https://cdn.pixabay.com/audio/2022/03/10/audio_92b55cff90.mp3"));
 
   const handleMouseEnter = () => {
     setIsHovered(true);
+    // Attempt to play audio
+    audioRef.current.play().catch((error) => {
+      console.error('Error playing audio:', error);
+    });
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
+    audioRef.current.pause(); // Pause audio when not hovering
+    audioRef.current.currentTime = 0; // Reset audio to start
   };
+
+  useEffect(() => {
+    return () => {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    };
+  }, []);
 
   return (
     <div
@@ -35,4 +49,5 @@ const CircleCardComponent = ({ title, image, gifImage, size = 300 }) => {
     </div>
   );
 };
-export default CircleCardComponent
+
+export default CircleCardComponent;

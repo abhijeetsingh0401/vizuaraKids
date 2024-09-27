@@ -19,7 +19,7 @@ export default function PreStoryComponent({ initialCard, actionCard, placeCard }
   const [loadingAudio, setLoadingAudio] = useState(false); // New loading state
   const [imageGenerationStatus, setImageGenerationStatus] = useState([]);
   const json=[{
-    "Character": "PeppaPig Character",
+    "Character": "Peppa Pig",
     "Action": {
       "Type": "Jumping",
       "Place": "Playground",
@@ -122,7 +122,7 @@ export default function PreStoryComponent({ initialCard, actionCard, placeCard }
   }, [initialCard, actionCard, placeCard]);
   return (
     <div className="max-w-2xl mx-auto bg-[#69187A] p-6 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+      <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
         {title}
       </h2>
       {error && <p className="text-red-500">{error}</p>}
