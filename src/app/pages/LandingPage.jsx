@@ -201,9 +201,9 @@ export default function LandingPage() {
   return (
     <>
       {/* Position the BadgeDisplay to the left side of the screen */}
-      {/* <div className="fixed top-0 left-0 p-4">
+      <div className="fixed top-0 left-0 p-4">
         <BadgeDisplay activeBadges={activeBadges} />
-      </div> */}
+      </div>
       
       <div
         className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center custom-cursor"
