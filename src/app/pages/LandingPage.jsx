@@ -211,24 +211,28 @@ export default function LandingPage() {
       >
         {showInitialScreen ? (
           <div className="flex flex-row items-center justify-center ml-80">
-            <div className="flex flex-col items-center">
-              <h1 className="text-8xl font-bold mb-8 text-white text-center">
-                Create your story
-              </h1>
-              <button
-                onClick={handleStartCreation}
-                className="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-6 rounded text-xl mt-4"
-              >
-                Start Creating
-              </button>
-            </div>
-  
-            <img 
-              src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/3b9127105856873.5f86b0cc29ddf.gif"
-              alt="Story Creation"
-              className="ml-4"
-            />
-          </div>
+  <div className="flex flex-col items-center">
+    <h1 className="text-8xl font-bold mb-2 text-white text-center">
+      IB PYP AI Literacy
+    </h1>
+    <h2 className="text-6xl font-semibold text-white text-center mb-8">
+      Create your own story
+    </h2>
+    <button
+      onClick={handleStartCreation}
+      className="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-6 rounded text-2xl mt-4"
+    >
+      Start Creating
+    </button>
+  </div>
+
+  <img 
+    src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/3b9127105856873.5f86b0cc29ddf.gif"
+    alt="Story Creation"
+    className="ml-4"
+  />
+</div>
+
         ) : (
           <>
             {!selectedCard && !showActionCards && (

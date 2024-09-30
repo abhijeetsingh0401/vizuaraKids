@@ -18,6 +18,12 @@ export default function PreStoryComponent({ initialCard, actionCard, placeCard }
   const[title,setTitle]=useState('')
   const [loadingAudio, setLoadingAudio] = useState(false); // New loading state
   const [imageGenerationStatus, setImageGenerationStatus] = useState([]);
+  const [showPopup, setShowPopup] = useState(false);
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
+
   const json=[{
     "Character": "Peppa Pig",
     "Action": {
@@ -162,16 +168,41 @@ export default function PreStoryComponent({ initialCard, actionCard, placeCard }
             onEnded={handleAudioEnded}
             onTimeUpdate={handleAudioTimeUpdate}
           />
-          <button 
-            onClick={isPlaying ? pauseAudio : playAudio}
-            className="bg-[#D63DF5] hover:bg-[#DF20F5] text-white font-bold py-2 px-4 rounded"
-          >
-            {isPlaying ? 'Pause' : 'Play'} Audio
-          </button>
+          <div className="flex space-x-4"> {/* Flex container to align buttons horizontally */}
+            <button
+              onClick={isPlaying ? pauseAudio : playAudio}
+              className="bg-[#D63DF5] hover:bg-[#DF20F5] text-white font-bold py-2 px-4 rounded"
+            >
+              {isPlaying ? 'Pause' : 'Play'} Audio
+            </button>
+            <button 
+              onClick={togglePopup}
+              className="bg-[rgb(34_197_94/var(--tw-bg-opacity))] hover:bg-[rgb(31_181_88/var(--tw-bg-opacity))] text-white font-bold py-2 px-4 rounded"
+            >
+              Conclusion
+            </button>
+          </div>
         </div>
       ) : (
-        loadingAudio && <p className="text-white">Loading audio, please wait...</p> // Loading text
+        loadingAudio && <p className="text-white">Loading audio, please wait...</p>
+      )}
+  
+      {/* Popup */}
+      {showPopup && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h3 className="text-xl font-bold mb-4 text-gray-900">Conclusion</h3>
+            <p className="text-gray-800">This is the conclusion text displayed in the popup.</p>
+            <button
+              onClick={togglePopup}
+              className="mt-4 bg-[#D63DF5] hover:bg-[#DF20F5] text-white font-bold py-2 px-4 rounded"
+            >
+              Close
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );
+  
 }

@@ -26,8 +26,8 @@ const BadgeContainer = styled.div`
 `;
 
 const BadgeImage = styled(motion.img)`
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   border-radius: 8px;
   cursor: pointer;
   filter: ${({ active }) => (active ? 'none' : 'grayscale(100%)')};
