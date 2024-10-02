@@ -219,7 +219,7 @@ export default function LandingPage() {
           <div className="flex flex-row items-center justify-center ml-80">
   <div className="flex flex-col items-center">
     <h1 className="text-8xl font-bold mb-2 text-white text-center">
-      IB PYP AI Literacy
+      IBPYP AI Literacy
     </h1>
     <h2 className="text-6xl font-semibold text-white text-center mb-8">
       Create your own story
