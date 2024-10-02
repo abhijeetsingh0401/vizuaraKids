@@ -1,29 +1,26 @@
 "use client";
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import useSound from 'use-sound';
 
-const CircleCardComponent = ({ title, image, gifImage, audioSrc, size = 300 }) => {
+const CircleCardComponent = ({ title, image, gifImage, audioSrc }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [play, { stop }] = useSound("https://cdn.pixabay.com/audio/2022/03/10/audio_92b55cff90.mp3")
+  const [play, { stop }] = useSound("https://cdn.pixabay.com/audio/2022/03/10/audio_92b55cff90.mp3");
 
   const handleMouseEnter = () => {
     setIsHovered(true);
-play()
+    play();
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
-stop()
+    stop();
   };
-
 
   return (
     <div
-      className="bg-[#F0FF4F] border border-[#B7C400] rounded-full shadow-lg transition-all duration-300 ease-out transform hover:scale-105 overflow-hidden"
+      className="bg-[#F0FF4F] border border-[#B7C400] rounded-full shadow-lg transition-all duration-300 ease-out transform hover:scale-105 overflow-hidden w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-60 lg:h-60 xl:w-72 xl:h-72"
       style={{
-        width: `${size}px`,
-        height: `${size}px`,
-        cursor: 'url(cursorstar.png), auto !important'
+        cursor: 'url(cursorstar.png), auto !important',
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

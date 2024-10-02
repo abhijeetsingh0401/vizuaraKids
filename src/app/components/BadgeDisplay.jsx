@@ -11,11 +11,11 @@ import styled from 'styled-components';
 
 
 const badges = [
-  { id: 1, name: 'Ethics', image: '/badges/ethics.png', color: '#97375d' },
-  { id: 2, name: 'Intelligence', image: '/badges/intelligence.png', color: '#5271ff' },
-  { id: 3, name: 'SDG Goals', image: '/badges/sdg.png', color: '#00bf63' },
-  { id: 4, name: 'Life Skills', image: '/badges/lifeskills.png', color: '#cb6ce6' },
-  { id: 5, name: 'Creativity', image: '/badges/creativity.png', color: '#5ce1e6' },
+  { id: 1, name: 'Ethics', image: '/badges/ethics.png', color: '#97375d',text:"This story teaches important lessons about doing the right thing, fairness, and understanding ethics in AI." },
+  { id: 2, name: 'Intelligence', image: '/badges/intelligence.png', color: '#5271ff',text:"The characters in this story are powered by advanced AI, helping them make smart decisions and solve problems." },
+  { id: 3, name: 'SDG Goals', image: '/badges/sdg.png', color: '#00bf63',text: "This story is aligned with the Sustainable Development Goals, focusing on creating a better future for all" },
+  { id: 4, name: 'Life Skills', image: '/badges/lifeskills.png', color: '#cb6ce6',text:"This story helps you develop important life skills like problem-solving, decision-making, and teamwork." },
+  { id: 5, name: 'Creativity', image: '/badges/creativity.png', color: '#5ce1e6' ,text:"This story encourages creativity, allowing you to build imaginative worlds and characters with the help of AI."},
 ];
 
 const BadgeContainer = styled.div`
@@ -26,8 +26,8 @@ const BadgeContainer = styled.div`
 `;
 
 const BadgeImage = styled(motion.img)`
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   border-radius: 8px;
   cursor: pointer;
   filter: ${({ active }) => (active ? 'none' : 'grayscale(100%)')};
@@ -42,7 +42,7 @@ const BadgeModal = ({ badge, position }) => (
       borderWidth: '10px',
       borderStyle: 'solid',
       width: '300px',
-      height: '150px',
+      height: '200px',
       position: 'absolute',
       top: position.top,
       left: position.left,
@@ -54,7 +54,7 @@ const BadgeModal = ({ badge, position }) => (
       {badge.name}
     </Typography>
     <Typography variant="body1" sx={{ fontFamily: '"Comic Sans MS", cursive, sans-serif',color:'black' }}>
-      Information about {badge.name} related to the current project.
+      {badge.text}
     </Typography>
   </Box>
 );

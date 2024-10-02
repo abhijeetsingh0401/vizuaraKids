@@ -162,7 +162,9 @@ export default function LandingPage() {
   const [placeCardDetails, setPlaceCardDetails] = useState(false);
   const [canPlayAudio, setCanPlayAudio] = useState(false); // Track if the user has interacted
   const [showInitialScreen, setShowInitialScreen] = useState(true);
-  const activeBadges = [1, 3, 5];
+  const activeBadges = [1,2, 3,4, 5];
+  const [showLearningOutcome, setShowLearningOutcome] = useState(false);
+
   const [play, { stop }] = useSound('../sounds/clicksound.mp3')
 
 
@@ -207,7 +209,11 @@ export default function LandingPage() {
       
       <div
         className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center custom-cursor"
-        style={{ backgroundImage: "url('backgroundimageiwithkids.png')" }}
+        style={{
+          backgroundImage: "url('backgroundimageiwithkids.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
       >
         {showInitialScreen ? (
           <div className="flex flex-row items-center justify-center ml-80">
@@ -218,12 +224,21 @@ export default function LandingPage() {
     <h2 className="text-6xl font-semibold text-white text-center mb-8">
       Create your own story
     </h2>
-    <button
-      onClick={handleStartCreation}
-      className="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-6 rounded text-2xl mt-4"
-    >
-      Start Creating
-    </button>
+    <div className="flex space-x-4">
+          <button
+            onClick={handleStartCreation}
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-6 rounded text-2xl mt-4"
+          >
+            Start Creating
+          </button>
+
+          <button
+            onClick={() => setShowLearningOutcome(true)}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded text-2xl mt-4"
+          >
+            Learning Outcome
+          </button>
+        </div>
   </div>
 
   <img 
@@ -231,6 +246,24 @@ export default function LandingPage() {
     alt="Story Creation"
     className="ml-4"
   />
+   {showLearningOutcome && (
+    <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+  <div className="bg-white p-8 rounded-lg shadow-lg">
+    <h3 className="text-4xl font-bold mb-4 text-gray-800">Learning Outcome</h3>
+    <p className="text-lg text-gray-800">
+      By creating your own story using AI, you will learn how AI can help
+      you turn your ideas into fun, creative stories. You'll also understand
+      how computers can be storytellers, just like humans!
+    </p>
+    <button
+      onClick={() => setShowLearningOutcome(false)}
+      className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4"
+    >
+      Close
+    </button>
+  </div>
+</div>
+  )}
 </div>
 
         ) : (
